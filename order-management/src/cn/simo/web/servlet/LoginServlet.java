@@ -32,16 +32,16 @@ public class LoginServlet extends HttpServlet {
 			user = new UserService().login(phone,password);
 			// 1. 判断user，将信息转发到msgservlet
 			if (user == null) {
-			    String mString = "{msg:'登录失败!',	userinfo:{},result: 0}";
+			    String mString = "{\"msg\":\"登录失败!\",\"userinfo\":{},\"result\": 0}";
 				request.setAttribute("msg", mString);
 			} else {
-				String mString = "{msg:'登录成功!',	userinfo:" + JSONObject.fromObject(user).toString() + ",result: 1}";
+				String mString = "{\"msg\":\"网络状况不佳!\",\"userinfo\":" + JSONObject.fromObject(user).toString() + ",\"result\": 0}";
 				request.setAttribute("msg", mString);
 			}
 			// 请求转发给msgservlet
 			request.getRequestDispatcher("/msg").forward(request, response);
 		} catch (Exception e) {
-			String mString = "{msg:'网络状况不佳!',	userinfo:{},result: 0}";
+			String mString = "{\"msg\":\"网络状况不佳!\",\"userinfo\":{},\"result\": 0}";
 			request.setAttribute("msg", mString);
 			request.getRequestDispatcher("/msg").forward(request, response);
 		}

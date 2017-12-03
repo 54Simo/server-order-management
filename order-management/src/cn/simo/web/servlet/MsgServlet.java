@@ -17,7 +17,7 @@ public class MsgServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String msg = (String) request.getAttribute("msg");
 		System.out.println(msg);
-		response.getWriter().print(msg);
+		response.getWriter().append(msg);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

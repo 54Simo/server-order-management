@@ -33,12 +33,15 @@ public class AddOrderServlet extends HttpServlet {
 			order.setId(Utils.generateOrderId(order.getOwnerPhone()));
 			int i = new OrderService().addOrder(order);
 			if (i == 1) {
-				request.setAttribute("msg", "添加成功！");
+				String mString = "{\"msg\":\"添加成功!\",\"result\":1}";
+				request.setAttribute("msg", mString);
 			} else {
-				request.setAttribute("msg", "添加失败！");
+				String mString = "{\"msg\":\"添加失败!\",\"result\":0}";
+				request.setAttribute("msg", mString);
 			}
 		} catch (Exception e) {
-			request.setAttribute("msg", "网络状况不佳！");
+			String mString = "{\"msg\":\"网络状况不佳!\",\"result\": 0}";
+			request.setAttribute("msg", mString);
 			request.getRequestDispatcher("/msg").forward(request, response);
 		}
 	}

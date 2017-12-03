@@ -34,14 +34,17 @@ public class RegisterServlet extends HttpServlet {
 			
 			// 3. 判断int，将信息转发到msgservlet
 			if (i == 1) {
-				request.setAttribute("msg", "信息已提交，等待审核！");
+				String mString = "{\"msg\":\"信息已提交，等待审核!\",\"result\":1}";
+				request.setAttribute("msg", mString);
 			} else {
-				request.setAttribute("msg", "注册失败！");
+				String mString = "{\"msg\":\"注册失败!\",\"result\":0}";
+				request.setAttribute("msg", mString);
 			}
 			// 请求转发给msgservlet
 			request.getRequestDispatcher("/msg").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("msg", "网络状况不佳！");
+			String mString = "{\"msg\":\"网络状况不佳!\",\"result\": 0}";
+			request.setAttribute("msg", mString);
 			request.getRequestDispatcher("/msg").forward(request, response);
 		}
 	}
